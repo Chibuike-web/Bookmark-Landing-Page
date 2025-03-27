@@ -4,6 +4,7 @@ import { CancelIcon, FacebookIcon, HamburgerIcon, TwitterIcon } from "./Icons";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useMobileNavState } from "../store/mobileNavState";
+import { Button } from "./Button";
 
 export default function Navbar() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -24,12 +25,12 @@ export default function Navbar() {
 				<StyledNav>
 					<img src={LogoColor} alt="Logo Bookmark" />
 					<NavContent>
-						<ul>
+						<ListContainer>
 							<li>FEATURES</li>
 							<li>PRICING</li>
 							<li>CONTACT</li>
-						</ul>
-						<button type="button">LOGIN</button>
+						</ListContainer>
+						<NavButton type="button">LOGIN</NavButton>
 					</NavContent>
 				</StyledNav>
 			) : (
@@ -59,51 +60,44 @@ const StyledNav = styled.nav`
 	width: 100%;
 	justify-content: space-between;
 	padding-block: 3rem;
-
-	img {
-		flex-shrink: 0;
-	}
 `;
 
 const NavContent = styled.menu`
 	display: flex;
 	align-items: center;
 	gap: 2.875rem;
+`;
 
-	ul {
-		display: flex;
-		gap: 2.875rem;
+// List
+const ListContainer = styled.ul`
+	display: flex;
+	gap: 2.875rem;
 
-		li {
-			list-style: none;
-			letter-spacing: 0.15em;
-			font-weight: 500;
-			cursor: pointer;
-			transition: color 0.3s ease;
-
-			&:hover {
-				color: var(--red);
-			}
-		}
-	}
-	button {
-		font-size: 1rem;
-		font-weight: 600;
-		letter-spacing: 0.17em;
-		background-color: var(--red);
-		color: var(--white);
-		padding-inline: 1.5rem;
-		padding-block: 0.9rem;
-		border-radius: 0.375rem;
-		border: 0.0625rem solid transparent;
-		transition: all 0.3s ease;
+	li {
+		list-style: none;
+		letter-spacing: 0.15em;
+		font-weight: 400;
+		cursor: pointer;
+		transition: color 0.3s ease;
+		color: var(--verydarkblue);
 
 		&:hover {
-			border: 0.125rem solid var(--red);
-			background: transparent;
 			color: var(--red);
-			cursor: pointer;
 		}
+	}
+`;
+
+// Button
+const NavButton = styled(Button)`
+	letter-spacing: 0.17em;
+	background-color: var(--red);
+	color: white;
+
+	&:hover {
+		border: 0.125rem solid var(--red);
+		background: transparent;
+		color: var(--red);
+		cursor: pointer;
 	}
 `;
 
@@ -149,7 +143,7 @@ const MobileNav = ({ closeNav }: MobileNavState) => {
 const Overlay = styled.div`
 	position: fixed;
 	inset: 0;
-	background-color: rgba(37, 43, 70, 0.8);
+	background-color: hsla(229, 31%, 21%, 0.8);
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
