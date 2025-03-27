@@ -7,6 +7,7 @@ export const Button = styled.button`
 	padding-block: 0.7rem;
 	border-radius: 0.375rem;
 	border: 0.0625rem solid transparent;
-	transition: all 0.3s ease;
+	transition: background-color 0.3s ease;
 	font-family: Rubik;
+	cursor: pointer;
 `;

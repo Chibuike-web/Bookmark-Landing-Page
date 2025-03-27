@@ -97,7 +97,6 @@ const NavButton = styled(Button)`
 		border: 0.125rem solid var(--red);
 		background: transparent;
 		color: var(--red);
-		cursor: pointer;
 	}
 `;
 
