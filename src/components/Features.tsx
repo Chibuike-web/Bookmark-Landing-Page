@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import FeatureImage1 from "../assets/illustration-features-tab-1.svg";
 import FeatureImage2 from "../assets/illustration-features-tab-2.svg";
 import FeatureImage3 from "../assets/illustration-features-tab-3.svg";
@@ -22,31 +22,38 @@ export default function Features() {
 		setActiveSlider(itemId);
 	};
 	return (
-		<FeatureSection>
-			<FeatureContent>
-				<FeatureHeading>Features</FeatureHeading>
-				<FeatureParagraph>
-					Our aim is to make it quick and easy for you to access your favourite websites. Your
-					bookmarks sync between your devices so you can access them on the go.
-				</FeatureParagraph>
-			</FeatureContent>
-			<TabContainer>
-				{tabData.map(({ id, text }: TabType) => (
-					<Tab key={id} onClick={() => handleTabToggle(id)} $active={activeSlider === id}>
-						{text}
-					</Tab>
-				))}
-			</TabContainer>
-			<TabWrapper>
-				<BackgroundElement></BackgroundElement>
-				{content.map(
-					({ id, heading, description, image }: ContentData) =>
-						activeSlider === id && (
-							<Content key={id} id={id} heading={heading} description={description} image={image} />
-						)
-				)}
-			</TabWrapper>
-		</FeatureSection>
+		<Wrapper>
+			<FeatureSection>
+				<FeatureContent>
+					<FeatureHeading>Features</FeatureHeading>
+					<FeatureParagraph>
+						Our aim is to make it quick and easy for you to access your favourite websites. Your
+						bookmarks sync between your devices so you can access them on the go.
+					</FeatureParagraph>
+				</FeatureContent>
+				<TabContainer>
+					{tabData.map(({ id, text }: TabType) => (
+						<Tab key={id} onClick={() => handleTabToggle(id)} $active={activeSlider === id}>
+							{text}
+						</Tab>
+					))}
+				</TabContainer>
+				<TabWrapper>
+					{content.map(
+						({ id, heading, description, image }: ContentData) =>
+							activeSlider === id && (
+								<Content
+									key={id}
+									id={id}
+									heading={heading}
+									description={description}
+									image={image}
+								/>
+							)
+					)}
+				</TabWrapper>
+			</FeatureSection>
+		</Wrapper>
 	);
 }
 
@@ -78,7 +85,7 @@ const content: ContentData[] = [
 	},
 ];
 
-const Content = ({ id, image, heading, description }: ContentData) => {
+const Content = React.memo(({ id, image, heading, description }: ContentData) => {
 	return (
 		<>
 			<TabImage $id={id}>
@@ -91,14 +98,30 @@ const Content = ({ id, image, heading, description }: ContentData) => {
 			</TabContent>
 		</>
 	);
-};
+});
 
 //Styled components
+
+const Wrapper = styled.div`
+	position: relative;
+
+	&::after {
+		content: "";
+		width: 50%;
+		height: 350px;
+		background-color: var(--blue);
+		position: absolute;
+		bottom: 0;
+		left: -80px;
+		border-end-end-radius: 150px;
+		z-index: -10;
+		transform: translateY(10%);
+	}
+`;
 
 const FeatureSection = styled.section`
 	margin-block-start: 4rem;
 	justify-items: center;
-	position: relative;
 `;
 
 const FeatureContent = styled.div`
@@ -165,23 +188,14 @@ const TabWrapper = styled.div`
 	display: flex;
 	gap: 126px;
 	align-items: center;
-`;
-
-const BackgroundElement = styled.div`
-	width: 50%; /* Adjust as needed */
-	height: 350px;
-	background-color: var(--blue);
-	position: absolute;
-	bottom: -50px;
-	left: -50px;
-	border-end-end-radius: 150px;
+	min-height: 450px;
 `;
 
 const TabImage = styled.figure<{ $id?: number }>`
-	position: relative;
 	max-width: ${({ $id }) => ($id === 1 ? "536px" : $id === 2 ? "468px" : $id === 3 ? "440px" : "")};
 	img {
 		width: 100%;
+		object-fit: contain;
 	}
 `;
 
