@@ -32,64 +32,73 @@ export default function Features() {
 			</FeatureContent>
 			<TabContainer>
 				{tabData.map(({ id, text }: TabType) => (
-					<Tab key={id} onClick={() => handleTabToggle(id)} active={activeSlider === id}>
+					<Tab key={id} onClick={() => handleTabToggle(id)} $active={activeSlider === id}>
 						{text}
 					</Tab>
 				))}
 			</TabContainer>
 			<TabWrapper>
-				{activeSlider === 1 ? (
-					<>
-						<img src={FeatureImage1} alt="Bookmark in one click" />
-						<TabContent>
-							<h1>Bookmark in one click</h1>
-							<p>
-								{" "}
-								Organize your bookmarks however you like. Our simple drag-and-drop interface gives
-								you complete control over how you manage your favourite sites.
-							</p>
-							<FeatureButton>More Info</FeatureButton>
-						</TabContent>
-					</>
-				) : activeSlider === 2 ? (
-					<>
-						<img src={FeatureImage2} alt="Bookmark in one click" />
-						<TabContent>
-							<h1>Intelligent search</h1>
-							<p>
-								Our powerful search feature will help you find saved sites in no time at all. No
-								need to trawl through all of your bookmarks.
-							</p>
-							<FeatureButton>More Info</FeatureButton>
-						</TabContent>
-					</>
-				) : activeSlider === 3 ? (
-					<>
-						<img src={FeatureImage3} alt="Bookmark in one click" />
-						<TabContent>
-							<h1>Share your bookmarks</h1>
-							<p>
-								Share your bookmarks Easily share your bookmarks and collections with others. reate
-								a shareable link that you can send at the click of a button.{" "}
-							</p>
-							<FeatureButton>More Info</FeatureButton>
-						</TabContent>
-					</>
-				) : (
-					""
+				<BackgroundElement></BackgroundElement>
+				{content.map(
+					({ id, heading, description, image }: ContentData) =>
+						activeSlider === id && (
+							<Content key={id} id={id} heading={heading} description={description} image={image} />
+						)
 				)}
 			</TabWrapper>
 		</FeatureSection>
 	);
 }
 
+interface ContentData {
+	id: number;
+	heading: string;
+	description: string;
+	image: string;
+}
+
+const content: ContentData[] = [
+	{
+		id: 1,
+		heading: "Bookmark in one click",
+		description: `Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete control over how you manage your favourite sites.`,
+		image: FeatureImage1,
+	},
+	{
+		id: 2,
+		heading: "Intelligent search",
+		description: `Our powerful search feature will help you find saved sites in no time at all. No need to trawl through all of your bookmarks.`,
+		image: FeatureImage2,
+	},
+	{
+		id: 3,
+		heading: "Share your bookmarks",
+		description: `Easily share your bookmarks and collections with others. Create a sharable link that you can send at the click of a button.`,
+		image: FeatureImage3,
+	},
+];
+
+const Content = ({ id, image, heading, description }: ContentData) => {
+	return (
+		<>
+			<TabImage $id={id}>
+				<img src={image} alt="Bookmark in one click" />
+			</TabImage>
+			<TabContent>
+				<h1>{heading}</h1>
+				<p>{description}</p>
+				<FeatureButton>More Info</FeatureButton>
+			</TabContent>
+		</>
+	);
+};
+
 //Styled components
 
 const FeatureSection = styled.section`
-	margin-inline: auto;
-	max-inline-size: 68.75rem;
 	margin-block-start: 4rem;
 	justify-items: center;
+	position: relative;
 `;
 
 const FeatureContent = styled.div`
@@ -121,23 +130,27 @@ const FeatureButton = styled(Button)`
 `;
 
 const TabContainer = styled.div`
+	display: flex;
 	margin-block: 4rem;
 `;
 
 interface TabProps {
-	active?: boolean;
+	$active?: boolean;
 }
+
 const Tab = styled(Button)<TabProps>`
 	font-size: 15px;
-	color: ${({ active }) => (active ? "var(--verydarkblue)" : "var(--grayishblue)")};
+	color: ${({ $active }) => ($active ? "var(--verydarkblue)" : "var(--grayishblue)")};
 	font-weight: 500;
 	position: relative;
-	padding-block: 12px;
+	padding-block: 24px;
+	padding-inline: 48px;
+	border: none;
 
 	&::after {
 		content: "";
 		position: absolute;
-		background-color: ${({ active }) => (active ? "var(--red)" : "transparent")};
+		background-color: ${({ $active }) => ($active ? "var(--red)" : "transparent")};
 		width: 100%;
 		height: 2px;
 		left: 0;
@@ -147,12 +160,43 @@ const Tab = styled(Button)<TabProps>`
 `;
 
 const TabWrapper = styled.div`
+	justify-items: center;
+	align-content: center;
 	display: flex;
-	width: 100%;
-	justify-content: space-between;
+	gap: 126px;
+	align-items: center;
+`;
+
+const BackgroundElement = styled.div`
+	width: 50%; /* Adjust as needed */
+	height: 350px;
+	background-color: var(--blue);
+	position: absolute;
+	bottom: -50px;
+	left: -50px;
+	border-end-end-radius: 150px;
+`;
+
+const TabImage = styled.figure<{ $id?: number }>`
+	position: relative;
+	max-width: ${({ $id }) => ($id === 1 ? "536px" : $id === 2 ? "468px" : $id === 3 ? "440px" : "")};
+	img {
+		width: 100%;
+	}
 `;
 
 const TabContent = styled.div`
 	width: 100%;
 	max-inline-size: 400px;
+	h1 {
+		margin-block-end: 32px;
+		font-weight: 500;
+		font-size: 30px;
+	}
+	p {
+		margin-block: 32px;
+		line-height: 1.5;
+		font-size: 16px;
+		color: var(--grayishblue);
+	}
 `;
