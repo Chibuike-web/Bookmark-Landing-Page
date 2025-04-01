@@ -84,6 +84,10 @@ const CTASection = styled.section`
 		font-size: 30px;
 		text-align: center;
 	}
+
+	@media (max-width: 800px) {
+		padding-inline: 1.5rem;
+	}
 `;
 
 const CTAParagraph = styled.p`
@@ -96,9 +100,13 @@ const CTAParagraph = styled.p`
 `;
 
 const CardsContainer = styled.div`
-	display: inline-flex;
-	align-items: start;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 	gap: 32px;
+
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 const Card = styled.article<{ $id?: number }>`
@@ -111,6 +119,10 @@ const Card = styled.article<{ $id?: number }>`
 	justify-items: center;
 	position: relative;
 	overflow: hidden;
+
+	@media (max-width: 800px) {
+		margin-top: 0;
+	}
 `;
 
 const CardImage = styled.img`
@@ -121,7 +133,7 @@ const CardImage = styled.img`
 
 const CardHeading = styled.h3`
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 18px;
 	font-size: 20px;
 	color: var(--verydarkblue);
 `;
@@ -136,7 +148,7 @@ const BackgroundDot = styled.img`
 	display: block;
 	position: absolute;
 	left: 0;
-	bottom: 94px;
+	bottom: 96px;
 `;
 
 const CardButton = styled(Button)`

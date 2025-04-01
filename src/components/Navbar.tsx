@@ -21,7 +21,7 @@ export default function Navbar() {
 	}, []);
 	return (
 		<>
-			{windowWidth > 768 ? (
+			{windowWidth > 900 ? (
 				<StyledNav>
 					<img src={LogoColor} alt="Logo Bookmark" />
 					<NavContent>

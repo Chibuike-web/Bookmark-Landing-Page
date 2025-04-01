@@ -107,20 +107,27 @@ const Wrapper = styled.div`
 
 	&::after {
 		content: "";
-		width: 50%;
+		min-width: 100%;
 		height: 350px;
 		background-color: var(--blue);
 		position: absolute;
 		bottom: 0;
-		left: -80px;
+		left: -800px;
 		border-end-end-radius: 150px;
 		z-index: -10;
-		transform: translateY(10%);
+		transform: translateY(8%);
+	}
+
+	@media (max-width: 900px) {
+		&::after {
+			transform: translateY(-80%);
+			left: -300px;
+		}
 	}
 `;
 
 const FeatureSection = styled.section`
-	margin-block-start: 4rem;
+	margin-block-start: 12rem;
 	justify-items: center;
 `;
 
@@ -155,6 +162,10 @@ const FeatureButton = styled(Button)`
 const TabContainer = styled.div`
 	display: flex;
 	margin-block: 4rem;
+
+	@media (max-width: 900px) {
+		flex-direction: column;
+	}
 `;
 
 interface TabProps {
@@ -189,10 +200,15 @@ const TabWrapper = styled.div`
 	gap: 126px;
 	align-items: center;
 	min-height: 450px;
+
+	@media (max-width: 900px) {
+		flex-direction: column;
+	}
 `;
 
 const TabImage = styled.figure<{ $id?: number }>`
 	max-width: ${({ $id }) => ($id === 1 ? "536px" : $id === 2 ? "468px" : $id === 3 ? "440px" : "")};
+
 	img {
 		width: 100%;
 		object-fit: contain;
@@ -202,6 +218,11 @@ const TabImage = styled.figure<{ $id?: number }>`
 const TabContent = styled.div`
 	width: 100%;
 	max-inline-size: 400px;
+
+	@media (max-width: 900px) {
+		text-align: center;
+	}
+
 	h1 {
 		margin-block-end: 32px;
 		font-weight: 500;
