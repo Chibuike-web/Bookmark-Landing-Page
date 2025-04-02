@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { ChevronIcon } from "./Icons";
 
 export default function FAQs() {
-	const [active, setActive] = useState(0);
+	const [active, setActive] = useState<number | null>(null);
 	const handleClick = (id: number) => {
-		setActive(id);
+		setActive((prevActive) => (prevActive === id ? null : id));
 	};
 	return (
 		<FAQsSection>
@@ -38,7 +38,7 @@ type AccordionItem = {
 };
 
 type AccordionProps = AccordionItem & {
-	active: number;
+	active: number | null;
 	handleClick: (id: number) => void;
 };
 
@@ -114,13 +114,7 @@ const AccordionContainer = styled.div`
 	flex-direction: column;
 `;
 
-const AccordionList = styled.button`
-	border-top: 0.03125rem solid var(--grayishblue);
-	padding-block: 1.25rem;
-	padding-inline: 0.75rem;
-`;
-
-const Header = styled.header<{ $id: number; $active: number }>`
+const Header = styled.header<{ $id: number; $active: number | null }>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -130,6 +124,16 @@ const Header = styled.header<{ $id: number; $active: number }>`
 const AccordionHeader = styled.h4`
 	font-weight: 400;
 	font-size: 1.125rem;
+`;
+
+const AccordionList = styled.button`
+	border-top: 0.03125rem solid var(--grayishblue);
+	padding-block: 1.25rem;
+	padding-inline: 0.75rem;
+
+	&:hover ${Header} ${AccordionHeader} {
+		color: red;
+	}
 `;
 
 const AccordionParagraph = styled.p`
