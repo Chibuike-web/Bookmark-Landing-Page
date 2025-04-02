@@ -74,7 +74,10 @@ const Accordion = ({ id, question, answer, active, handleClick }: AccordionProps
 		<AccordionList type="button" onClick={() => handleClick(id)}>
 			<Header $id={id} $active={active}>
 				<AccordionHeader>{question}</AccordionHeader>
-				<ChevronIcon />
+				<StyledChevronIcon
+					$active={active === id}
+					strokeColor={active === id ? "hsl(0, 94%, 66%)" : "#5267DF"}
+				/>
 			</Header>
 			{active === id && <AccordionParagraph>{answer}</AccordionParagraph>}
 		</AccordionList>
@@ -132,11 +135,17 @@ const AccordionList = styled.button`
 	padding-inline: 0.75rem;
 
 	&:hover ${Header} ${AccordionHeader} {
-		color: red;
+		color: var(--red);
 	}
 `;
 
 const AccordionParagraph = styled.p`
 	color: var(--grayishblue);
+	font-size: 18px;
 	line-height: 1.6;
+`;
+
+const StyledChevronIcon = styled(ChevronIcon)<{ $active: boolean }>`
+	transition: transform 0.3s ease;
+	transform: ${({ $active }) => $active && "rotate(180deg)"};
 `;

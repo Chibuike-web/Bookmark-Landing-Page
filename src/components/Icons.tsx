@@ -78,7 +78,7 @@ export function TwitterIcon() {
 	);
 }
 
-export function ChevronIcon({ className = "" }) {
+export function ChevronIcon({ strokeColor = "#5267DF", className = "" }) {
 	return (
 		<svg
 			className={className}
@@ -89,7 +89,7 @@ export function ChevronIcon({ className = "" }) {
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<g clip-path="url(#clip0_2211_287)">
-				<path d="M1 1L9 9L17 1" stroke="#5267DF" stroke-width="3" />
+				<path d="M1 1L9 9L17 1" stroke={strokeColor} stroke-width="3" />
 			</g>
 			<defs>
 				<clipPath id="clip0_2211_287">
