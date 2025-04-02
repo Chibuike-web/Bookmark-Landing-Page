@@ -75,72 +75,72 @@ const CTACard = ({ id, image, alt, heading, paragraph }: CardType) => {
 //Styled Components
 
 const CTASection = styled.section`
-	margin-top: 200px;
+	margin-top: 12.5rem;
 	justify-items: center;
 	align-content: center;
 	h1 {
-		margin-block-end: 32px;
+		margin-block-end: 2rem;
 		font-weight: 500;
-		font-size: 30px;
+		font-size: 1.875rem;
 		text-align: center;
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 50rem) {
 		padding-inline: 1.5rem;
 	}
 `;
 
 const CTAParagraph = styled.p`
-	margin-block: 32px;
+	margin-block: 2rem;
 	line-height: 1.5;
-	font-size: 16px;
+	font-size: 1rem;
 	color: var(--grayishblue);
 	text-align: center;
-	max-inline-size: 500px;
+	max-inline-size: 31.25rem;
 `;
 
 const CardsContainer = styled.div`
 	display: flex;
 	align-items: start;
-	gap: 32px;
+	gap: 2rem;
 
-	@media (max-width: 800px) {
+	@media (max-width: 50rem) {
 		flex-direction: column;
 	}
 `;
 
 const Card = styled.article<{ $id?: number }>`
 	background-color: white;
-	box-shadow: 0px 10px 16px hsla(231, 69%, 60%, 0.15);
-	margin-top: ${({ $id }) => ($id === 2 ? "40px" : $id === 3 ? "80px" : "")};
-	padding-inline: 20px;
-	padding-block: 32px 20px;
-	border-radius: 16px;
+	box-shadow: 0px 0.625rem 1rem hsla(231, 69%, 60%, 0.15);
+	margin-top: ${({ $id }) => ($id === 2 ? "2.5rem" : $id === 3 ? "5rem" : "")};
+	padding-inline: 1.25rem;
+	padding-block: 2rem 1.25rem;
+	border-radius: 1rem;
 	justify-items: center;
 	position: relative;
 	overflow: hidden;
 
-	@media (max-width: 800px) {
+	@media (max-width: 50rem) {
 		margin-top: 0;
 	}
 `;
 
 const CardImage = styled.img`
 	width: 100%;
-	max-width: 100px;
-	margin-bottom: 36px;
+	max-width: 6.25rem;
+	margin-bottom: 2.25rem;
 `;
 
 const CardHeading = styled.h3`
 	text-align: center;
-	margin-bottom: 18px;
-	font-size: 20px;
+	margin-bottom: 1.125rem;
+	font-size: 1.25rem;
 	color: var(--verydarkblue);
 `;
 
 const CardParagraph = styled.p`
 	text-align: center;
-	margin-bottom: 72px;
+	margin-bottom: 4.5rem;
 	color: var(--grayishblue);
 `;
 
@@ -148,7 +148,7 @@ const BackgroundDot = styled.img`
 	display: block;
 	position: absolute;
 	left: 0;
-	bottom: 96px;
+	bottom: 6rem;
 `;
 
 const CardButton = styled(Button)`

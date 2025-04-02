@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ChevronIcon } from "./Icons";
 
 export default function FAQs() {
-	const [active, setActive] = useState(1);
+	const [active, setActive] = useState(0);
 	const handleClick = (id: number) => {
 		setActive(id);
 	};
@@ -72,7 +72,7 @@ const accordionItems: AccordionItem[] = [
 const Accordion = ({ id, question, answer, active, handleClick }: AccordionProps) => {
 	return (
 		<AccordionList type="button" onClick={() => handleClick(id)}>
-			<Header>
+			<Header $id={id} $active={active}>
 				<AccordionHeader>{question}</AccordionHeader>
 				<ChevronIcon />
 			</Header>
@@ -82,54 +82,54 @@ const Accordion = ({ id, question, answer, active, handleClick }: AccordionProps
 };
 
 //Styled Components
-
 const FAQsSection = styled.section`
-	margin-top: 200px;
+	margin-top: 7.5rem;
 	justify-items: center;
 	align-content: center;
 	h1 {
-		margin-block-end: 32px;
+		margin-block-end: 2rem;
 		font-weight: 500;
-		font-size: 30px;
+		font-size: 1.875rem;
 		text-align: center;
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 50rem) {
 		padding-inline: 1.5rem;
 	}
 `;
 
 const FAQsParagraph = styled.p`
-	margin-block: 32px;
+	margin-block: 2rem;
 	line-height: 1.5;
-	font-size: 16px;
+	font-size: 1rem;
 	color: var(--grayishblue);
 	text-align: center;
-	max-inline-size: 500px;
+	max-inline-size: 31.25rem;
 `;
 
 const AccordionContainer = styled.div`
 	width: 100%;
-	max-width: 540px;
+	max-width: 33.75rem;
 	display: flex;
 	flex-direction: column;
 `;
 
 const AccordionList = styled.button`
-	border-top: 0.5px solid var(--grayishblue);
-	padding-block: 20px;
+	border-top: 0.03125rem solid var(--grayishblue);
+	padding-block: 1.25rem;
+	padding-inline: 0.75rem;
 `;
 
-const Header = styled.header`
+const Header = styled.header<{ $id: number; $active: number }>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 24px;
+	margin-bottom: ${({ $id, $active }) => $id === $active && "1.5rem"};
 `;
 
 const AccordionHeader = styled.h4`
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 1.125rem;
 `;
 
 const AccordionParagraph = styled.p`
