@@ -105,18 +105,18 @@ const Content = React.memo(({ id, image, heading, description }: ContentData) =>
 const Wrapper = styled.div`
 	position: relative;
 
-	&::after {
+	/* &::after {
 		content: "";
 		min-width: 100%;
 		height: 350px;
 		background-color: var(--blue);
 		position: absolute;
 		bottom: 0;
-		left: -800px;
+		right: 800px;
 		border-end-end-radius: 150px;
 		z-index: -10;
 		transform: translateY(8%);
-	}
+	} */
 
 	@media (max-width: 900px) {
 		&::after {

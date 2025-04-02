@@ -77,3 +77,25 @@ export function TwitterIcon() {
 		</svg>
 	);
 }
+
+export function ChevronIcon({ className = "" }) {
+	return (
+		<svg
+			className={className}
+			width="18"
+			height="12"
+			viewBox="0 0 18 12"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<g clip-path="url(#clip0_2211_287)">
+				<path d="M1 1L9 9L17 1" stroke="#5267DF" stroke-width="3" />
+			</g>
+			<defs>
+				<clipPath id="clip0_2211_287">
+					<rect width="18" height="12" fill="white" />
+				</clipPath>
+			</defs>
+		</svg>
+	);
+}

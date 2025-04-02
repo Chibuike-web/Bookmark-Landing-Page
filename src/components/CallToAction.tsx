@@ -100,12 +100,12 @@ const CTAParagraph = styled.p`
 `;
 
 const CardsContainer = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	display: flex;
+	align-items: start;
 	gap: 32px;
 
 	@media (max-width: 800px) {
-		grid-template-columns: 1fr;
+		flex-direction: column;
 	}
 `;
 
