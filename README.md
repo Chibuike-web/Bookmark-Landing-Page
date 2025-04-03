@@ -1,54 +1,41 @@
-# React + TypeScript + Vite
+# **Bookmark Landing Page**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple **landing page** project for a **bookmark manager**, built to practice and explore **Styled Components** in React.
 
-Currently, two official plugins are available:
+The design is from **Frontend Mentor**, implemented as part of a styling exercise.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## **Why This Project?**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+I wanted to **learn and experiment** with **Styled Components**, so I created this landing page as a hands-on way to get comfortable with:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Dynamic styling** based on props
+- **Scoped component styles**
+- **CSS-in-JS best practices**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This project isn't focused on advanced functionality or complex state management—it's primarily a **styling exploration**.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## **Tech Stack**
+
+- **React** (Functional Components)
+- **Styled Components**
+- **TypeScript**
+
+---
+
+## **Next Steps**
+
+This project was a **learning exercise**, but possible future improvements include:  
+✅ Making it fully **responsive**  
+✅ Adding **animations** with Framer Motion  
+✅ Integrating a **real API** for saving bookmarks
+
+---
+
+## **Credits & Inspiration**
+
+- **Design from** [Frontend Mentor](https://www.frontendmentor.io/)
+- **Built for learning Styled Components**

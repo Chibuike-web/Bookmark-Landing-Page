@@ -3,6 +3,7 @@ import FooterLogo from "../assets/footer-logo.svg";
 import { Button } from "./Button";
 import { ListContainer } from "./Navbar";
 import { FacebookIcon, TwitterIcon } from "./Icons";
+import { useState } from "react";
 
 export default function Footer() {
 	return (
@@ -12,14 +13,11 @@ export default function Footer() {
 				<Header>Stay up-to-date with what we're doing</Header>
 			</Container>
 
-			<Form action="">
-				<Input type="email" name="email" placeholder="Enter your email address" />
-				<FormButton type="submit">Contact Us</FormButton>
-			</Form>
+			<EmailForm />
 			<Bottom>
 				<Nav>
 					<Wrapper>
-						<img src={FooterLogo} alt="" />
+						<img src={FooterLogo} alt="Footer Logo" />
 						<FooterLinks>
 							<li>FEATURES</li>
 							<li>PRICING</li>
@@ -39,6 +37,53 @@ export default function Footer() {
 		</ContactUsSection>
 	);
 }
+
+const EmailForm = () => {
+	const [email, setEmail] = useState("");
+	const [error, setError] = useState("");
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = e.target;
+		setEmail(value);
+		if (value.trim().length === 0) {
+			setError("");
+		}
+	};
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		if (!email) {
+			setError("Email cannot be empty.");
+			return;
+		}
+
+		if (emailRegex.test(email)) {
+			setError("");
+			console.log("Email is valid:", email);
+		} else {
+			setError("Whoops, make sure it's an email");
+			console.log("Email is invalid:", email);
+		}
+	};
+
+	return (
+		<Form onSubmit={handleSubmit}>
+			<InputContainer>
+				<Input
+					type="text"
+					value={email}
+					name="email"
+					placeholder="Enter your email address"
+					onChange={(e) => handleChange(e)}
+					$hasError={!!error}
+				/>
+				{error && <Error>{error}</Error>}
+			</InputContainer>
+			<FormButton type="submit">Contact Us</FormButton>
+		</Form>
+	);
+};
+
 const ContactUsSection = styled.section`
 	display: flex;
 	flex-direction: column;
@@ -74,7 +119,7 @@ const Header = styled.h2`
 
 const Form = styled.form`
 	display: flex;
-	align-items: center;
+	align-items: start;
 	gap: 1rem;
 	margin-top: 2rem;
 	max-width: 28.125rem;
@@ -88,26 +133,44 @@ const Form = styled.form`
 	}
 `;
 
-const Input = styled.input`
-	padding-inline: 1rem;
+const InputContainer = styled.div`
 	width: 100%;
-	padding-block: 0.4375rem;
-	border: none;
-	border-radius: 0.1875rem;
 	max-width: 18.75rem;
-	outline: none;
-	min-height: 2.5rem;
-	color: var(--verydarkblue);
 
 	@media (max-width: 50rem) {
 		max-width: 100%;
 	}
+`;
+
+const Input = styled.input<{ $hasError: boolean }>`
+	padding-inline: 1rem;
+	width: 100%;
+	padding-block: 0.4375rem;
+	border: ${(props) => (props.$hasError ? "0.125rem solid var(--red)" : "none")};
+	border-radius: 0.2rem;
+	font-family: Rubik;
+	outline: none;
+	min-height: 2.5rem;
+	color: var(--verydarkblue);
 
 	&::placeholder {
 		font-size: 0.8rem;
 		color: var(--border);
 		font-family: "Rubik";
 	}
+`;
+
+const Error = styled.p`
+	background-color: var(--red);
+	color: white;
+	width: 100%;
+	padding-inline: 0.625rem;
+	padding-block: 0.625rem 0.5rem;
+	font-size: 0.625rem;
+	margin-top: -0.375rem;
+	font-style: italic;
+	border-bottom-left-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
 `;
 
 const FormButton = styled(Button)`
@@ -131,7 +194,6 @@ const Bottom = styled.footer`
 	margin-top: 2.5rem;
 	width: 100%;
 	padding-block: 3rem;
-	padding-block: 3rem;
 	justify-items: center;
 `;
 
@@ -139,7 +201,7 @@ const Nav = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	max-width: 1100px;
+	max-width: 68.75rem;
 	align-items: center;
 
 	@media (max-width: 50rem) {
@@ -168,7 +230,7 @@ const FooterLinks = styled(ListContainer)`
 
 const SocialIcons = styled.div`
 	display: flex;
-	gap: 24px;
+	gap: 1.5rem;
 `;
 
 const SocialButton = styled.button`
