@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { ChevronIcon } from "./Icons";
+import { Button } from "./Button";
 
 export default function FAQs() {
 	const [active, setActive] = useState<number | null>(null);
@@ -27,6 +28,7 @@ export default function FAQs() {
 					/>
 				))}
 			</AccordionContainer>
+			<FAQsButton>More Info</FAQsButton>
 		</FAQsSection>
 	);
 }
@@ -71,7 +73,7 @@ const accordionItems: AccordionItem[] = [
 
 const Accordion = ({ id, question, answer, active, handleClick }: AccordionProps) => {
 	return (
-		<AccordionList type="button" onClick={() => handleClick(id)}>
+		<AccordionList type="button" onClick={() => handleClick(id)} $id={id}>
 			<Header $id={id} $active={active}>
 				<AccordionHeader>{question}</AccordionHeader>
 				<StyledChevronIcon
@@ -129,10 +131,11 @@ const AccordionHeader = styled.h4`
 	font-size: 1.125rem;
 `;
 
-const AccordionList = styled.button`
-	border-top: 0.03125rem solid var(--grayishblue);
+const AccordionList = styled.button<{ $id: number }>`
+	border-top: 0.03125rem solid var(--border);
 	padding-block: 1.25rem;
 	padding-inline: 0.75rem;
+	border-bottom: ${({ $id }) => $id === accordionItems.length && "0.03125rem solid var(--border);"};
 
 	&:hover ${Header} ${AccordionHeader} {
 		color: var(--red);
@@ -141,11 +144,24 @@ const AccordionList = styled.button`
 
 const AccordionParagraph = styled.p`
 	color: var(--grayishblue);
-	font-size: 18px;
+	font-size: 1.125rem;
 	line-height: 1.6;
 `;
 
 const StyledChevronIcon = styled(ChevronIcon)<{ $active: boolean }>`
 	transition: transform 0.3s ease;
 	transform: ${({ $active }) => $active && "rotate(180deg)"};
+`;
+
+const FAQsButton = styled(Button)`
+	background-color: var(--blue);
+	color: white;
+	margin-top: 3.125rem;
+
+	&:hover {
+		border: 0.125rem solid var(--blue);
+		background: transparent;
+		color: var(--blue);
+		cursor: pointer;
+	}
 `;

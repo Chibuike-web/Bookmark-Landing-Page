@@ -38,9 +38,16 @@ export function CancelIcon() {
 	);
 }
 
-export function FacebookIcon() {
+export function FacebookIcon({ className = "" }) {
 	return (
-		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			className={className}
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<g clipPath="url(#clip0_2211_297)">
 				<path
 					fillRule="evenodd"
@@ -58,9 +65,16 @@ export function FacebookIcon() {
 	);
 }
 
-export function TwitterIcon() {
+export function TwitterIcon({ className = "" }) {
 	return (
-		<svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			className={className}
+			width="24"
+			height="20"
+			viewBox="0 0 24 20"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<g clipPath="url(#clip0_2211_301)">
 				<path
 					fillRule="evenodd"

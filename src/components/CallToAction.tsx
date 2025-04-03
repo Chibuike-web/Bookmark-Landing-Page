@@ -154,4 +154,11 @@ const BackgroundDot = styled.img`
 const CardButton = styled(Button)`
 	background-color: var(--blue);
 	color: white;
+
+	&:hover {
+		border: 0.125rem solid var(--blue);
+		background: transparent;
+		color: var(--blue);
+		cursor: pointer;
+	}
 `;

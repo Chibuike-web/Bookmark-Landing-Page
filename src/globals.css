@@ -9,6 +9,7 @@
 	--blue: hsl(231, 69%, 60%);
 	--grayishblue: hsl(229, 8%, 60%);
 	--verydarkblue: hsl(229, 31%, 21%);
+	--border: hsla(229, 8%, 60%, 0.5);
 }
 
 body {

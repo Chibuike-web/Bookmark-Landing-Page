@@ -69,9 +69,10 @@ const NavContent = styled.menu`
 `;
 
 // List
-const ListContainer = styled.ul`
+export const ListContainer = styled.ul`
 	display: flex;
 	gap: 2.875rem;
+	color: var(--verydarkblue);
 
 	li {
 		list-style: none;
@@ -79,7 +80,6 @@ const ListContainer = styled.ul`
 		font-weight: 400;
 		cursor: pointer;
 		transition: color 0.3s ease;
-		color: var(--verydarkblue);
 
 		&:hover {
 			color: var(--red);
