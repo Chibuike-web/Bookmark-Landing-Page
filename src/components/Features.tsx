@@ -4,6 +4,8 @@ import FeatureImage2 from "../assets/illustration-features-tab-2.svg";
 import FeatureImage3 from "../assets/illustration-features-tab-3.svg";
 import styled from "styled-components";
 import { Button } from "./Button";
+import useWindowSize from "./Hooks";
+import { motion } from "motion/react";
 
 type TabType = {
 	id: number;
@@ -86,16 +88,67 @@ const content: ContentData[] = [
 ];
 
 const Content = React.memo(({ id, image, heading, description }: ContentData) => {
+	const windowWidth = useWindowSize();
+	const isMobile = windowWidth <= 900;
+	const slideVariants = {
+		initial: {
+			opacity: 0,
+			x: isMobile ? 0 : 50,
+			y: isMobile ? 50 : 0,
+		},
+		animate: {
+			opacity: 1,
+			x: 0,
+			y: 0,
+			transition: {
+				staggerChildren: 0.2,
+				duration: 0.6,
+			},
+		},
+	};
+
+	const itemVariant = {
+		initial: { opacity: 0, y: 30 },
+		animate: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } },
+	};
+
 	return (
 		<>
-			<TabImage $id={id}>
+			<MotionTabImage
+				$id={id}
+				initial={{ opacity: 0, scale: 0.3 }}
+				whileInView={{ opacity: 1, scale: 1 }}
+				transition={{ duration: 1 }}
+				viewport={{ once: true }}
+			>
 				<img src={image} alt="Bookmark in one click" />
-			</TabImage>
-			<TabContent>
-				<h1>{heading}</h1>
-				<p>{description}</p>
-				<FeatureButton>More Info</FeatureButton>
-			</TabContent>
+			</MotionTabImage>
+			<MotionTabContent variants={slideVariants} initial="initial" animate="animate">
+				<motion.h1
+					initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 50 : 0 }}
+					whileInView={{ opacity: 1, x: 0, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.2 }}
+					viewport={{ once: true }}
+				>
+					{heading}
+				</motion.h1>
+				<motion.p
+					initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 50 : 0 }}
+					whileInView={{ opacity: 1, x: 0, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.4 }}
+					viewport={{ once: true }}
+				>
+					{description}
+				</motion.p>
+				<MotionFeatureButton
+					initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 50 : 0 }}
+					whileInView={{ opacity: 1, x: 0, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.6 }}
+					viewport={{ once: true }}
+				>
+					More Info
+				</MotionFeatureButton>
+			</MotionTabContent>
 		</>
 	);
 });
@@ -159,6 +212,8 @@ const FeatureButton = styled(Button)`
 	color: white;
 `;
 
+const MotionFeatureButton = motion(FeatureButton);
+
 const TabContainer = styled.div`
 	display: flex;
 	margin-block: 4rem;
@@ -215,6 +270,8 @@ const TabImage = styled.figure<{ $id?: number }>`
 	}
 `;
 
+const MotionTabImage = motion(TabImage);
+
 const TabContent = styled.div`
 	width: 100%;
 	max-inline-size: 400px;
@@ -235,3 +292,5 @@ const TabContent = styled.div`
 		color: var(--grayishblue);
 	}
 `;
+
+const MotionTabContent = motion(TabContent);

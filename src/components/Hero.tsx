@@ -1,25 +1,50 @@
 import styled from "styled-components";
 import { Button } from "./Button";
 import HeroImage from "../assets/illustration-hero.svg";
+import { motion } from "motion/react";
 
 export default function Hero() {
 	return (
 		<HeroSection>
 			<HeroWrapper>
 				<Leftside>
-					<h1>A Simple Bookmark Manager </h1>
-					<p>
+					<motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}>
+						A Simple Bookmark Manager{" "}
+					</motion.h1>
+					<motion.p
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1, delay: 0.1 }}
+					>
 						A clean and simple interface to organize your favourite websites. Open a new browser tab
 						and see your sites load instantly. Try it for free.
-					</p>
+					</motion.p>
 					<ButtonsContainer>
-						<PrimaryButton type="button">Get it on Chrome</PrimaryButton>
-						<SecondaryButton type="button">Get it on Firefox</SecondaryButton>
+						<MotionPrimaryButton
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 1, delay: 0.7 }}
+							type="button"
+						>
+							Get it on Chrome
+						</MotionPrimaryButton>
+						<MotionSecondaryButton
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 1, delay: 0.8 }}
+							type="button"
+						>
+							Get it on Firefox
+						</MotionSecondaryButton>
 					</ButtonsContainer>
 				</Leftside>
-				<Rightside>
+				<MotionRightSide
+					initial={{ opacity: 0, x: 100 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 1, delay: 0.5 }}
+				>
 					<img src={HeroImage} alt="Image for Hero Section" />
-				</Rightside>
+				</MotionRightSide>
 			</HeroWrapper>
 		</HeroSection>
 	);
@@ -108,6 +133,8 @@ const PrimaryButton = styled(Button)`
 	}
 `;
 
+const MotionPrimaryButton = motion(PrimaryButton);
+
 const SecondaryButton = styled(Button)`
 	background-color: var(--verylightgrayishblue);
 	color: var(--verydarkblue);
@@ -123,8 +150,12 @@ const SecondaryButton = styled(Button)`
 	}
 `;
 
-const Rightside = styled.aside`
+const MotionSecondaryButton = motion(SecondaryButton);
+
+const RightSide = styled.aside`
 	img {
 		width: 100%;
 	}
 `;
+
+const MotionRightSide = motion(RightSide);

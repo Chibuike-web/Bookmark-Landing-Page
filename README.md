@@ -26,15 +26,6 @@ This project isn't focused on advanced functionality or complex state management
 
 ---
 
-## **Next Steps**
-
-This project was a **learning exercise**, but possible future improvements include:  
-✅ Making it fully **responsive**  
-✅ Adding **animations** with Framer Motion  
-✅ Integrating a **real API** for saving bookmarks
-
----
-
 ## **Credits & Inspiration**
 
 - **Design from** [Frontend Mentor](https://www.frontendmentor.io/)

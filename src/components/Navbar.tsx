@@ -2,23 +2,16 @@ import LogoColor from "../assets/logo-bookmark.svg";
 import LogoWhite from "../assets/logo-bookmark-white.svg";
 import { CancelIcon, FacebookIcon, HamburgerIcon, TwitterIcon } from "./Icons";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+
 import { useMobileNavState } from "../store/mobileNavState";
 import { Button } from "./Button";
+import { motion } from "motion/react";
+import useWindowSize from "./Hooks";
 
 export default function Navbar() {
-	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const { isOpen, openNav, closeNav } = useMobileNavState();
+	const windowWidth = useWindowSize();
 
-	useEffect(() => {
-		const handleResize = () => {
-			setWindowWidth(window.innerWidth);
-		};
-
-		window.addEventListener("resize", handleResize);
-
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
 	return (
 		<>
 			{windowWidth > 900 ? (
