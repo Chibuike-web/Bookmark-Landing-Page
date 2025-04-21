@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { ChevronIcon } from "./Icons";
 import { Button } from "./Button";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function FAQs() {
 	const [active, setActive] = useState<number | null>(null);
@@ -81,7 +82,20 @@ const Accordion = ({ id, question, answer, active, handleClick }: AccordionProps
 					strokeColor={active === id ? "hsl(0, 94%, 66%)" : "#5267DF"}
 				/>
 			</Header>
-			{active === id && <AccordionParagraph>{answer}</AccordionParagraph>}
+			<AnimatePresence>
+				{active === id && (
+					<MotionAccordionParagraph
+						layout
+						initial={{ height: 0, opacity: 0 }}
+						animate={{ height: "auto", opacity: 1 }}
+						exit={{ height: 0, opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						style={{ overflow: "hidden" }}
+					>
+						{answer}
+					</MotionAccordionParagraph>
+				)}
+			</AnimatePresence>
 		</AccordionList>
 	);
 };
@@ -147,6 +161,8 @@ const AccordionParagraph = styled.p`
 	font-size: 1.125rem;
 	line-height: 1.6;
 `;
+
+const MotionAccordionParagraph = motion(AccordionParagraph);
 
 const StyledChevronIcon = styled(ChevronIcon)<{ $active: boolean }>`
 	transition: transform 0.3s ease;

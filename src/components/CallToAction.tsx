@@ -4,6 +4,7 @@ import FireFoxLogo from "../assets/logo-firefox.svg";
 import OperaLogo from "../assets/logo-opera.svg";
 import { Button } from "./Button";
 import Dots from "../assets/bg-dots.svg";
+import { motion } from "motion/react";
 
 export default function CallToAction() {
 	return (
@@ -62,13 +63,20 @@ const cardData: CardType[] = [
 
 const CTACard = ({ id, image, alt, heading, paragraph }: CardType) => {
 	return (
-		<Card $id={id}>
+		<MotionCard
+			$id={id}
+			key={id}
+			initial={{ opacity: 0, y: 150 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{ duration: 1, delay: id === 1 ? 0 : id === 2 ? 0.2 : 0.3 }}
+			viewport={{ once: true }}
+		>
 			<CardImage src={image} alt={alt} />
 			<CardHeading>{heading}</CardHeading>
 			<CardParagraph>{paragraph}</CardParagraph>
 			<BackgroundDot src={Dots} />
 			<CardButton>Add & Install Extension</CardButton>
-		</Card>
+		</MotionCard>
 	);
 };
 
@@ -124,6 +132,8 @@ const Card = styled.article<{ $id?: number }>`
 		margin-top: 0;
 	}
 `;
+
+const MotionCard = motion(Card);
 
 const CardImage = styled.img`
 	width: 100%;
