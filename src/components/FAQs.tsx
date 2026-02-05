@@ -1,8 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { ChevronIcon } from "./Icons";
-import { Button } from "./Button";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence } from "motion/react";
 
 export default function FAQs() {
 	const [active, setActive] = useState<number | null>(null);
@@ -166,17 +165,4 @@ const MotionAccordionParagraph = motion(AccordionParagraph);
 const StyledChevronIcon = styled(ChevronIcon)<{ $active: boolean }>`
 	transition: transform 0.3s ease;
 	transform: ${({ $active }) => $active && "rotate(180deg)"};
-`;
-
-const FAQsButton = styled(Button)`
-	background-color: var(--blue);
-	color: white;
-	margin-top: 3.125rem;
-
-	&:hover {
-		border: 0.125rem solid var(--blue);
-		background: transparent;
-		color: var(--blue);
-		cursor: pointer;
-	}
 `;
