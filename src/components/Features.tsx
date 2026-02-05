@@ -140,14 +140,7 @@ const Content = React.memo(({ id, image, heading, description }: ContentData) =>
 				>
 					{description}
 				</motion.p>
-				<MotionFeatureButton
-					initial={{ opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 50 : 0 }}
-					whileInView={{ opacity: 1, x: 0, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.6 }}
-					viewport={{ once: true }}
-				>
-					More Info
-				</MotionFeatureButton>
+
 			</MotionTabContent>
 		</>
 	);

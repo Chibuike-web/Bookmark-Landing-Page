@@ -29,7 +29,6 @@ export default function FAQs() {
 					/>
 				))}
 			</AccordionContainer>
-			<FAQsButton>More Info</FAQsButton>
 		</FAQsSection>
 	);
 }
