@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { ChevronIcon } from "./Icons";
-import { AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function FAQs() {
 	const [active, setActive] = useState<number | null>(null);
