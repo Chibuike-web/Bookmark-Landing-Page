@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 import { useMobileNavState } from "../store/mobileNavState";
 import { Button } from "./Button";
-import { motion } from "motion/react";
 import useWindowSize from "./Hooks";
 
 export default function Navbar() {
